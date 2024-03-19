@@ -51,6 +51,10 @@ body {
     height: auto;
 }
 
+.output > div {
+    min-height: 100px;
+}
+
 div > button {
     font-size: 50px;
     padding: 5px;
