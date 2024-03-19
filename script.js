@@ -28,3 +28,20 @@ function operate(value1, value2, operator) {
             divide(value1, value2);
     }
 }
+
+const zeroBtn = document.querySelector('.0');
+const oneBtn = document.querySelector('.1');
+const twoBtn = document.querySelector('.2');
+const threeBtn = document.querySelector('.3');
+const fourBtn = document.querySelector('.4');
+const fiveBtn = document.querySelector('.5');
+const sixBtn = document.querySelector('.6');
+const sevenBtn = document.querySelector('.7');
+const eightBtn = document.querySelector('.8');
+const nineBtn = document.querySelector('.9');
+const addBtn = document.querySelector('.add');
+const subtractBtn = document.querySelector('.subtract');
+const multiplyBtn = document.querySelector('.multiply');
+const divideBtn = document.querySelector('.divide');
+const equalsBtn = document.querySelector('.equals');
+const clearBtn = document.querySelector('.clear');
