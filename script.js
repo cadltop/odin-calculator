@@ -29,6 +29,14 @@ function operate(value1, value2, operator) {
     }
 }
 
+function populateDisplay(char) {
+    if (document.querySelector('.equation').textContent === undefined) {
+        document.querySelector('equation').textContent = char;
+    } else {
+        document.querySelector('equation').innerHTML = char;
+    }
+}
+
 const zeroBtn = document.querySelector('.0');
 const oneBtn = document.querySelector('.1');
 const twoBtn = document.querySelector('.2');
