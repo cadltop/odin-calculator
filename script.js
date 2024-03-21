@@ -1,6 +1,9 @@
+let equation = '';
+
 function populateDisplay(char) {
     const equationDiv = document.querySelector('.equation');
-    equationDiv.innerHTML = char;
+    equationDiv.innerHTML = equation + char;
+    equation = equationDiv.innerHTML;
 }
 
 const zeroBtn = document.querySelector('.n0');
