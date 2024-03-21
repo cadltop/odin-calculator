@@ -45,60 +45,64 @@ clearBtn.addEventListener('click', () => {
     resultDiv.innerHTML = '', result = '';
 });
 
-let numbers = [], symbols =[];
+let numbers = [], symbols = [];
 function add(value1, value2) {
-    let result = value1 + value2;
+    let operation = value1 + value2;
     numbers.filter((num) => {
     if (num !== value1 || num !== value2) {
         return num;
     }
     });
 
-    return result;
+    return operation;
 }
 function subtract(value1, value2) {
-    let result = value1 - value2;
+    let operation = value1 - value2;
     numbers.filter((num) => {
     if (num !== value1 || num !== value2) {
         return num;
     }
     });
 
-    return result;
+    return operation;
 }
 function multiply(value1, value2) {
-    let result = value1 * value2;
+    let operation = value1 * value2;
     numbers.filter((num) => {
     if (num !== value1 || num !== value2) {
         return num;
     }
     });
 
-    return result;
+    return operation;
 }
 function divide(value1, value2) {
-    let result = value1 / value2;
+    let operation = value1 / value2;
     numbers.filter((num) => {
     if (num !== value1 || num !== value2) {
         return num;
     }
     });
     
-    return result;
+    return operation;
 }
 
 let result;
 function operate(numbers, symbols) { 
-    for (let i= 0; i<= (symbols.length -1); i++) {
+    for (let i = 0; i < symbols.length; i++) {
         switch (symbols[i]) {
             case '*':
                 result = multiply(numbers[i], numbers[i+1]);
+                break;
             case '/':
                 result = divide(numbers[i], numbers[i+1]);
+                break;
             case '+':
                 result = add(numbers[i], numbers[i+1]);
+                break;
             case '-':
                 result = subtract(numbers[i], numbers[i+1]);
+                break;
         }
     }
 
