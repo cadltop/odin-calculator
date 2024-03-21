@@ -20,8 +20,8 @@ const addBtn = document.querySelector('.add');
 const subtractBtn = document.querySelector('.subtract');
 const multiplyBtn = document.querySelector('.multiply');
 const divideBtn = document.querySelector('.divide');
-const equalsBtn = document.querySelector('.equals');
 const clearBtn = document.querySelector('.clear');
+const equalsBtn = document.querySelector('.equals');
 
 zeroBtn.addEventListener('click', () => populateDisplay('0'));
 oneBtn.addEventListener('click', () => populateDisplay('1'));
@@ -37,6 +37,11 @@ addBtn.addEventListener('click', () => populateDisplay('+'));
 subtractBtn.addEventListener('click', () => populateDisplay('-'));
 multiplyBtn.addEventListener('click', () => populateDisplay('*'));
 divideBtn.addEventListener('click', () => populateDisplay('/'));
+clearBtn.addEventListener('click', () => {
+    const equationDiv = document.querySelector('.equation');
+    equationDiv.innerHTML = '', equation = '';
+});
+
 
 /*let value1, value2, operator;
 
