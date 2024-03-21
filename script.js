@@ -37,40 +37,82 @@ addBtn.addEventListener('click', () => populateDisplay('+'));
 subtractBtn.addEventListener('click', () => populateDisplay('-'));
 multiplyBtn.addEventListener('click', () => populateDisplay('*'));
 divideBtn.addEventListener('click', () => populateDisplay('/'));
+
 clearBtn.addEventListener('click', () => {
     const equationDiv = document.querySelector('.equation');
+    const resultDiv = document.querySelector('.result');
     equationDiv.innerHTML = '', equation = '';
+    resultDiv.innerHTML = '', result = '';
 });
 
-
-/*let value1, value2, operator;
-
+let numbers = [], symbols =[];
 function add(value1, value2) {
-
-}
-
-function subtract(value1, value2) {
-    
-}
-
-function multiply(value1, value2) {
-    
-}
-
-function divide(value1, value2) {
-    
-}
-
-function operate(value1, value2, operator) {
-    switch (operator) {
-        case '+':
-            add(value1, value2);
-        case '-':
-            subtract(value1, value2);
-        case '*':
-            multiply(value1, value2);
-        case '/':
-            divide(value1, value2);
+    let result = value1 + value2;
+    numbers.filter((num) => {
+    if (num !== value1 || num !== value2) {
+        return num;
     }
+    });
+
+    return result;
 }
-*/
+function subtract(value1, value2) {
+    let result = value1 - value2;
+    numbers.filter((num) => {
+    if (num !== value1 || num !== value2) {
+        return num;
+    }
+    });
+
+    return result;
+}
+function multiply(value1, value2) {
+    let result = value1 * value2;
+    numbers.filter((num) => {
+    if (num !== value1 || num !== value2) {
+        return num;
+    }
+    });
+
+    return result;
+}
+function divide(value1, value2) {
+    let result = value1 / value2;
+    numbers.filter((num) => {
+    if (num !== value1 || num !== value2) {
+        return num;
+    }
+    });
+    
+    return result;
+}
+
+let result;
+function operate(numbers, symbols) { 
+    for (let i= 0; i<= (symbols.length -1); i++) {
+        switch (symbols[i]) {
+            case '*':
+                result = multiply(numbers[i], numbers[i+1]);
+            case '/':
+                result = divide(numbers[i], numbers[i+1]);
+            case '+':
+                result = add(numbers[i], numbers[i+1]);
+            case '-':
+                result = subtract(numbers[i], numbers[i+1]);
+        }
+    }
+
+    return result;
+}
+
+equalsBtn.addEventListener('click', () => {
+    numbers = equation.split(/[^0-9]/g);
+    symbols = equation.match(/[+-/*]/g);
+
+    for (num in numbers) {
+        numbers[num] = parseInt(numbers[num]);
+    }
+
+    const resultDiv = document.querySelector('.result');
+    resultDiv.innerHTML = operate(numbers, symbols);
+});
