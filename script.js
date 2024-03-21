@@ -1,4 +1,41 @@
-let value1, value2, operator;
+function populateDisplay(char) {
+    const equationDiv = document.querySelector('.equation');
+    equationDiv.innerHTML = char;
+}
+
+const zeroBtn = document.querySelector('.n0');
+const oneBtn = document.querySelector('.n1');
+const twoBtn = document.querySelector('.n2');
+const threeBtn = document.querySelector('.n3');
+const fourBtn = document.querySelector('.n4');
+const fiveBtn = document.querySelector('.n5');
+const sixBtn = document.querySelector('.n6');
+const sevenBtn = document.querySelector('.n7');
+const eightBtn = document.querySelector('.n8');
+const nineBtn = document.querySelector('.n9');
+const addBtn = document.querySelector('.add');
+const subtractBtn = document.querySelector('.subtract');
+const multiplyBtn = document.querySelector('.multiply');
+const divideBtn = document.querySelector('.divide');
+const equalsBtn = document.querySelector('.equals');
+const clearBtn = document.querySelector('.clear');
+
+zeroBtn.addEventListener('click', () => populateDisplay('0'));
+oneBtn.addEventListener('click', () => populateDisplay('1'));
+twoBtn.addEventListener('click', () => populateDisplay('2'));
+threeBtn.addEventListener('click', () => populateDisplay('3'));
+fourBtn.addEventListener('click', () => populateDisplay('4'));
+fiveBtn.addEventListener('click', () => populateDisplay('5'));
+sixBtn.addEventListener('click', () => populateDisplay('6'));
+sevenBtn.addEventListener('click', () => populateDisplay('7'));
+eightBtn.addEventListener('click', () => populateDisplay('8'));
+nineBtn.addEventListener('click', () => populateDisplay('9'));
+addBtn.addEventListener('click', () => populateDisplay('+'));
+subtractBtn.addEventListener('click', () => populateDisplay('-'));
+multiplyBtn.addEventListener('click', () => populateDisplay('*'));
+divideBtn.addEventListener('click', () => populateDisplay('/'));
+
+/*let value1, value2, operator;
 
 function add(value1, value2) {
 
@@ -28,28 +65,4 @@ function operate(value1, value2, operator) {
             divide(value1, value2);
     }
 }
-
-function populateDisplay(char) {
-    if (document.querySelector('.equation').textContent === undefined) {
-        document.querySelector('equation').textContent = char;
-    } else {
-        document.querySelector('equation').innerHTML = char;
-    }
-}
-
-const zeroBtn = document.querySelector('.0');
-const oneBtn = document.querySelector('.1');
-const twoBtn = document.querySelector('.2');
-const threeBtn = document.querySelector('.3');
-const fourBtn = document.querySelector('.4');
-const fiveBtn = document.querySelector('.5');
-const sixBtn = document.querySelector('.6');
-const sevenBtn = document.querySelector('.7');
-const eightBtn = document.querySelector('.8');
-const nineBtn = document.querySelector('.9');
-const addBtn = document.querySelector('.add');
-const subtractBtn = document.querySelector('.subtract');
-const multiplyBtn = document.querySelector('.multiply');
-const divideBtn = document.querySelector('.divide');
-const equalsBtn = document.querySelector('.equals');
-const clearBtn = document.querySelector('.clear');
+*/
