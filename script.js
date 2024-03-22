@@ -1,11 +1,3 @@
-let equation = '';
-
-function populateDisplay(char) {
-    const equationDiv = document.querySelector('.equation');
-    equationDiv.innerHTML = equation + char;
-    equation = equationDiv.innerHTML;
-}
-
 const zeroBtn = document.querySelector('.n0');
 const oneBtn = document.querySelector('.n1');
 const twoBtn = document.querySelector('.n2');
@@ -22,6 +14,13 @@ const multiplyBtn = document.querySelector('.multiply');
 const divideBtn = document.querySelector('.divide');
 const clearBtn = document.querySelector('.clear');
 const equalsBtn = document.querySelector('.equals');
+
+let equation = '';
+function populateDisplay(char) {
+    const equationDiv = document.querySelector('.equation');
+    equationDiv.innerHTML = equation + char;
+    equation = equationDiv.innerHTML;
+}
 
 zeroBtn.addEventListener('click', () => populateDisplay('0'));
 oneBtn.addEventListener('click', () => populateDisplay('1'));
@@ -46,46 +45,17 @@ clearBtn.addEventListener('click', () => {
 });
 
 let numbers = [], symbols = [];
-function add(value1, value2) {
-    let operation = value1 + value2;
-    numbers.filter((num) => {
-    if (num !== value1 || num !== value2) {
-        return num;
-    }
-    });
-
-    return operation;
-}
-function subtract(value1, value2) {
-    let operation = value1 - value2;
-    numbers.filter((num) => {
-    if (num !== value1 || num !== value2) {
-        return num;
-    }
-    });
-
-    return operation;
-}
-function multiply(value1, value2) {
-    let operation = value1 * value2;
-    numbers.filter((num) => {
-    if (num !== value1 || num !== value2) {
-        return num;
-    }
-    });
-
-    return operation;
-}
-function divide(value1, value2) {
-    let operation = value1 / value2;
-    numbers.filter((num) => {
-    if (num !== value1 || num !== value2) {
-        return num;
-    }
-    });
+equalsBtn.addEventListener('click', () => {
+    numbers = equation.split(/[^0-9]/g);
+    symbols = equation.match(/[+-/*]/g);
     
-    return operation;
-}
+    for (num in numbers) {
+        numbers[num] = parseInt(numbers[num]);
+    }
+
+    const resultDiv = document.querySelector('.result');
+    resultDiv.innerHTML = operate(numbers, symbols);
+});
 
 let result;
 function operate(numbers, symbols) { 
@@ -105,18 +75,23 @@ function operate(numbers, symbols) {
                 break;
         }
     }
-
+    
     return result;
 }
 
-equalsBtn.addEventListener('click', () => {
-    numbers = equation.split(/[^0-9]/g);
-    symbols = equation.match(/[+-/*]/g);
-
-    for (num in numbers) {
-        numbers[num] = parseInt(numbers[num]);
-    }
-
-    const resultDiv = document.querySelector('.result');
-    resultDiv.innerHTML = operate(numbers, symbols);
-});
+function add(value1, value2) {
+    let operation = value1 + value2;
+    return operation;
+}
+function subtract(value1, value2) {
+    let operation = value1 - value2;
+    return operation;
+}
+function multiply(value1, value2) {
+    let operation = value1 * value2;
+    return operation;
+}
+function divide(value1, value2) {
+    let operation = value1 / value2;
+    return operation;
+}
