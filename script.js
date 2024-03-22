@@ -21,60 +21,56 @@ function populateDisplay(char) {
     equationDiv.innerHTML = equation + char;
     equation = equationDiv.innerHTML;
 }
-
-zeroBtn.addEventListener('click', () => populateDisplay('0'));
-oneBtn.addEventListener('click', () => populateDisplay('1'));
-twoBtn.addEventListener('click', () => populateDisplay('2'));
-threeBtn.addEventListener('click', () => populateDisplay('3'));
-fourBtn.addEventListener('click', () => populateDisplay('4'));
-fiveBtn.addEventListener('click', () => populateDisplay('5'));
-sixBtn.addEventListener('click', () => populateDisplay('6'));
-sevenBtn.addEventListener('click', () => populateDisplay('7'));
-eightBtn.addEventListener('click', () => populateDisplay('8'));
-nineBtn.addEventListener('click', () => populateDisplay('9'));
-addBtn.addEventListener('click', () => populateDisplay('+'));
-subtractBtn.addEventListener('click', () => populateDisplay('-'));
-multiplyBtn.addEventListener('click', () => populateDisplay('*'));
-divideBtn.addEventListener('click', () => populateDisplay('/'));
-
-clearBtn.addEventListener('click', () => {
-    const equationDiv = document.querySelector('.equation');
-    const resultDiv = document.querySelector('.result');
-    equationDiv.innerHTML = '', equation = '';
-    resultDiv.innerHTML = '', result = '';
-});
-equalsBtn.addEventListener('click', () => {
-
-    const resultDiv = document.querySelector('.result');
-    resultDiv.innerHTML = operate(numbers, symbols);
-});
-
-let result, numbers = [], symbols = [];;
-function operate(numbers, symbols) { 
+let result, numbers = [], symbols = [], results = [];
+function operate(numbers, symbols) {
     numbers = equation.split(/[^0-9]/g);
     symbols = equation.match(/[+-/*]/g);
     
     for (num in numbers) {
         numbers[num] = parseInt(numbers[num]);
     }
-    for (let i = 0; i < symbols.length; i++) {
-        switch (symbols[i]) {
-            case '*':
-                result = multiply(numbers[i], numbers[i+1]);
-                break;
-            case '/':
-                result = divide(numbers[i], numbers[i+1]);
-                break;
-            case '+':
-                result = add(numbers[i], numbers[i+1]);
-                break;
-            case '-':
-                result = subtract(numbers[i], numbers[i+1]);
-                break;
-        }
+
+    switch (symbols[0]) {
+        case '*':
+            result = multiply(numbers[0], numbers[1]);
+            break;
+        case '/':
+            result = divide(numbers[0], numbers[1]);
+            break;
+        case '+':
+            result = add(numbers[0], numbers[1]);
+            break;
+        case '-':
+            result = subtract(numbers[0], numbers[1]);
+            break;
     }
     
     return result;
+}
+
+function autoOperate() {
+    if (equation.match(/[+-/*]/g).length === 2) {
+        result = operate(numbers, symbols);
+        const equationDiv = document.querySelector('.equation');
+        equationDiv.innerHTML = result + equation.match(/[+-/*]/g).at(-1);
+        equation = result + equation.match(/[+-/*]/g).at(-1);
+        for (let i = 1; i < symbols.length; i++) {
+            switch (symbols[i]) {
+                case '*':
+                    result = multiply(numbers[0], numbers[1]);
+                    break;
+                case '/':
+                    result = divide(numbers[0], numbers[1]);
+                    break;
+                case '+':
+                    result = add(numbers[0], numbers[1]);
+                    break;
+                case '-':
+                    result = subtract(numbers[0], numbers[1]);
+                    break;
+            }
+        }
+    }
 }
 
 function add(value1, value2) {
@@ -93,3 +89,40 @@ function divide(value1, value2) {
     let operation = value1 / value2;
     return operation;
 }
+
+zeroBtn.addEventListener('click', () => populateDisplay('0'));
+oneBtn.addEventListener('click', () => populateDisplay('1'));
+twoBtn.addEventListener('click', () => populateDisplay('2'));
+threeBtn.addEventListener('click', () => populateDisplay('3'));
+fourBtn.addEventListener('click', () => populateDisplay('4'));
+fiveBtn.addEventListener('click', () => populateDisplay('5'));
+sixBtn.addEventListener('click', () => populateDisplay('6'));
+sevenBtn.addEventListener('click', () => populateDisplay('7'));
+eightBtn.addEventListener('click', () => populateDisplay('8'));
+nineBtn.addEventListener('click', () => populateDisplay('9'));
+addBtn.addEventListener('click', () => {
+    populateDisplay('+');
+    autoOperate();
+});
+subtractBtn.addEventListener('click', () => {
+    populateDisplay('-');
+    autoOperate();
+});
+multiplyBtn.addEventListener('click', () => {
+    populateDisplay('*');
+    autoOperate();
+});
+divideBtn.addEventListener('click', () => {
+    populateDisplay('/');
+    autoOperate();
+});
+clearBtn.addEventListener('click', () => {
+    const equationDiv = document.querySelector('.equation');
+    const resultDiv = document.querySelector('.result');
+    equationDiv.innerHTML = '', equation = '';
+    resultDiv.innerHTML = '', result = '';
+});
+equalsBtn.addEventListener('click', () => {
+    const resultDiv = document.querySelector('.result');
+    resultDiv.innerHTML = operate(numbers, symbols);
+});
