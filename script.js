@@ -43,22 +43,20 @@ clearBtn.addEventListener('click', () => {
     equationDiv.innerHTML = '', equation = '';
     resultDiv.innerHTML = '', result = '';
 });
-
-let numbers = [], symbols = [];
 equalsBtn.addEventListener('click', () => {
+
+    const resultDiv = document.querySelector('.result');
+    resultDiv.innerHTML = operate(numbers, symbols);
+});
+
+let result, numbers = [], symbols = [];;
+function operate(numbers, symbols) { 
     numbers = equation.split(/[^0-9]/g);
     symbols = equation.match(/[+-/*]/g);
     
     for (num in numbers) {
         numbers[num] = parseInt(numbers[num]);
     }
-
-    const resultDiv = document.querySelector('.result');
-    resultDiv.innerHTML = operate(numbers, symbols);
-});
-
-let result;
-function operate(numbers, symbols) { 
     for (let i = 0; i < symbols.length; i++) {
         switch (symbols[i]) {
             case '*':
