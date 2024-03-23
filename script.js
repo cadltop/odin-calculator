@@ -8,6 +8,7 @@ const sixBtn = document.querySelector('.n6');
 const sevenBtn = document.querySelector('.n7');
 const eightBtn = document.querySelector('.n8');
 const nineBtn = document.querySelector('.n9');
+const dotBtn = document.querySelector('.dot');
 const addBtn = document.querySelector('.add');
 const subtractBtn = document.querySelector('.subtract');
 const multiplyBtn = document.querySelector('.multiply');
@@ -21,13 +22,13 @@ function populateDisplay(char) {
     equationDiv.innerHTML = equation + char;
     equation = equationDiv.innerHTML;
 }
-let result, numbers = [], symbols = [], results = [];
+let result, numbers = [], symbols = [];
 function operate(numbers, symbols) {
-    numbers = equation.split(/[^0-9]/g);
-    symbols = equation.match(/[+-/*]/g);
+    numbers = equation.split(/[^.0-9]/g);
+    symbols = equation.match(/[^.0-9]/g);
     
     for (num in numbers) {
-        numbers[num] = parseInt(numbers[num]);
+        numbers[num] = parseFloat(numbers[num]);
     }
 
     switch (symbols[0]) {
@@ -45,15 +46,15 @@ function operate(numbers, symbols) {
             break;
     }
     
-    return result;
+    return parseFloat(result.toFixed(2));
 }
 
 function autoOperate() {
-    if (equation.match(/[+-/*]/g).length === 2) {
+    if (equation.match(/[^.0-9]/g).length === 2) {
         result = operate(numbers, symbols);
         const equationDiv = document.querySelector('.equation');
-        equationDiv.innerHTML = result + equation.match(/[+-/*]/g).at(-1);
-        equation = result + equation.match(/[+-/*]/g).at(-1);
+        equationDiv.innerHTML = result + equation.match(/[^.0-9]/g).at(-1);
+        equation = result + equation.match(/[^.0-9]/g).at(-1);
         for (let i = 1; i < symbols.length; i++) {
             switch (symbols[i]) {
                 case '*':
@@ -100,6 +101,7 @@ sixBtn.addEventListener('click', () => populateDisplay('6'));
 sevenBtn.addEventListener('click', () => populateDisplay('7'));
 eightBtn.addEventListener('click', () => populateDisplay('8'));
 nineBtn.addEventListener('click', () => populateDisplay('9'));
+dotBtn.addEventListener('click', () => populateDisplay('.'));
 addBtn.addEventListener('click', () => {
     populateDisplay('+');
     autoOperate();
