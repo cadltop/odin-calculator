@@ -16,8 +16,17 @@ const divideBtn = document.querySelector('.divide');
 const clearBtn = document.querySelector('.clear');
 const equalsBtn = document.querySelector('.equals');
 
-let equation = '';
+let equation = '', dotCounter;
 function populateDisplay(char) {
+    if (char === '.') {
+        if (dotCounter === 1) {
+            if (char === equation.match(/[.+-/*]/g).at(-1)) {
+                char = '';
+            }
+        } else {
+            dotCounter = 1;
+        }
+    }
     const equationDiv = document.querySelector('.equation');
     equationDiv.innerHTML = equation + char;
     equation = equationDiv.innerHTML;
@@ -123,6 +132,7 @@ clearBtn.addEventListener('click', () => {
     const resultDiv = document.querySelector('.result');
     equationDiv.innerHTML = '', equation = '';
     resultDiv.innerHTML = '', result = '';
+    dotCounter = 0;
 });
 equalsBtn.addEventListener('click', () => {
     const resultDiv = document.querySelector('.result');
