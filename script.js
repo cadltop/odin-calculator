@@ -13,6 +13,7 @@ const addBtn = document.querySelector('.add');
 const subtractBtn = document.querySelector('.subtract');
 const multiplyBtn = document.querySelector('.multiply');
 const divideBtn = document.querySelector('.divide');
+const deleteBtn = document.querySelector('.delete');
 const clearBtn = document.querySelector('.clear');
 const equalsBtn = document.querySelector('.equals');
 
@@ -126,6 +127,13 @@ multiplyBtn.addEventListener('click', () => {
 divideBtn.addEventListener('click', () => {
     populateDisplay('/');
     autoOperate();
+});
+let exp;
+deleteBtn.addEventListener('click', () => {
+    const equationDiv = document.querySelector('.equation');
+    exp = equation.replace(`${equation.charAt(equation.length-1)}`, '')
+    equationDiv.innerHTML = exp;
+    equation = equationDiv.innerHTML;
 });
 clearBtn.addEventListener('click', () => {
     const equationDiv = document.querySelector('.equation');
