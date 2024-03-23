@@ -1,8 +1,12 @@
+* {
+    border-radius: 10px;
+}
 
 body {
     background-color: rgb(16, 28, 53);
     display: flex;
     justify-content: center;
+    align-items: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -17,19 +21,20 @@ body {
     min-width: 500px;
     min-height: 500px;
     padding: 20px;
-    background-color: orange;
+    background-color: rgb(39, 51, 68);
 }
 
 .title {
     text-align: center;
     font-size: 40px;
     font-weight: bold;
+    color: white;
 }
 
 .output {
     padding: 10px;
     font-size: 60px;
-    background-color: rgb(223, 223, 223);
+    background-color: rgb(145, 145, 145);
 }
 
 .buttons {
@@ -37,18 +42,31 @@ body {
     gap: 15px;
 }
 
-.number, .others > button {
-    margin: 2px;
+.numbers > button, .others > button {
+    margin: 3px;
+    padding: 3px;
+}
+
+.numbers > button {
+    background-color: rgb(0, 145, 89);
+}
+
+.others > button {
+    background-color: rgb(201, 137, 0);
+}
+
+button.clear, button.delete {
+    background-color: rgb(0, 111, 201);
 }
 
 .numbers {
     width: 250px;
-    height: auto;
+    height: 200px;
 }
 
 .others {
-    width: 200px;
-    height: auto;
+    width: 250px;
+    height: 200px;
 }
 
 .output > div {
@@ -58,7 +76,4 @@ body {
 div > button {
     font-size: 50px;
     padding: 5px;
-}
-/*div {
-    border: 2px red solid;
-}*/   
+} 
